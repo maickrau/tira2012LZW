@@ -1,0 +1,12 @@
+1. Mitä algoritmeja ja tietorakenteita toteutat työssäsi
+Lempel-Ziv-Welch -pakkaus. String tablelle tarvitsee rakenteen josta voi etsiä ja lisätä nopeasti. Lisäksi tarvitsee pakatun tiedoston kirjoitukseen ja lukemiseen bittimanipulaatiota.
+
+2. Mitä ongelmaa ratkaiset ja miksi valitsit kyseiset algoritmit/tietorakenteet
+Tiedon pakkaus. LZW on käytössä monissa sovelluksissa, esim. .gif, .pdf ja unixin compress.
+
+3. Mitä syötteitä ohjelma saa ja miten näitä käytetään
+Mielivaltaisia tiedostoja, esim. kuvia, tekstitiedostoja. Tiedostot pakataan pienemmiksi.
+Myös pakattuja tiedostoja, jotka avataan alkuperäisiksi.
+
+4. Tavoitteena olevat aika- ja tilavaativuudet (m.m. O-analyysi)
+5. Lähteet
