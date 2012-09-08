@@ -1,0 +1,20 @@
+8.9 testattu pakkauksen ja avauksen toimivuus
+testauskoodi mainissa:
+
+        String pakattavaksi = "aaaaaaabcdefdefaa";
+        System.out.println(pakattavaksi);
+        Pakkaaja pakkaaja = new Pakkaaja();
+        String pakattu = pakkaaja.pakkaa(pakattavaksi);
+        System.out.println(pakattu);
+        Avaaja avaaja = new Avaaja();
+        String avattu = avaaja.avaa(pakattu);
+        System.out.println(avattu);
+
+jos "avattu" ja "pakattavaksi" ovat erilaisia niin pakkaus/avaus ei toimi
+tulos:
+
+aaaaaaabcdefdefaa
+ 97 256 257 97 98 99 100 101 102 262 102 256
+aaaaaaabcdefdefaa
+
+toimii
