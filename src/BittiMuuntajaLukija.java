@@ -1,39 +1,86 @@
 import java.util.*;
 
 /**
- * lukee pakatun stringin ja palauttaa merkkejä yksi kerrallaan. todo
+ * lukee pakatun stringin ja palauttaa merkkejä yksi kerrallaan.
+ * handlaa vain vakionpituisia merkkejä, todo vaihteleva pituus
  */
 public class BittiMuuntajaLukija {
-    ArrayList<Integer> jono;
+    String jono;
+    int tavuSijainti;
+    int bittiSijainti;
+    int bittejaMerkissa;
+    byte[] loppuMaski;
+    byte[] alkuMaski;
     public BittiMuuntajaLukija()
     {
-        jono = new ArrayList<Integer>();
+        this(15);
+    }
+    public BittiMuuntajaLukija(int bittejaMerkissa)
+    {
+        this.bittejaMerkissa = bittejaMerkissa;
+        jono = "";
+        tavuSijainti = 0;
+        bittiSijainti = 0;
+        loppuMaski = new byte[8];
+        alkuMaski = new byte[8];
+        for (int i = 0; i < 8; i++)
+        {
+            loppuMaski[i] = 0;
+            alkuMaski[i] = 0;
+            for (int a = 0; a <= 7-i; a++)
+            {
+                loppuMaski[i] |= 1 << a;
+            }
+            for (int a = 0; a <= i; a++)
+            {
+                alkuMaski[i] |= 1 << (7-a);
+            }
+        }
     }
     public boolean onSeuraavaMerkki()
     {
-        return (!jono.isEmpty());
+        if (tavuSijainti*8+bittiSijainti+bittejaMerkissa > jono.length()*8)
+        {
+            return false;
+        }
+        return true;
     }
     public int seuraavaMerkki()
     {
-        int tulos = jono.get(0);
-        int a = jono.remove(0);
+        int tulos;
+        int lisays = ((byte)jono.charAt(tavuSijainti))&loppuMaski[bittiSijainti];
+        if (lisays < 0)
+        {
+            lisays = 256+lisays;
+        }
+        tulos = lisays;
+        tavuSijainti++;
+        int bittejaJaljella = bittejaMerkissa-(8-bittiSijainti);
+        while (bittejaJaljella >= 8)
+        {
+            tulos <<= 8;
+            tulos += (jono.charAt(tavuSijainti));
+            bittejaJaljella -= 8;
+            tavuSijainti++;
+        }
+        if (bittejaJaljella > 0)
+        {
+            tulos <<= bittejaJaljella;
+            lisays = (int)(((byte)jono.charAt(tavuSijainti))&alkuMaski[bittejaJaljella-1]);
+            if (lisays < 0)
+            {
+                lisays = 256+lisays;
+            }
+            lisays >>= (8-bittejaJaljella);
+            tulos += lisays;
+        }
+        bittiSijainti = bittejaJaljella;
         return tulos;
     }
     public void lueMerkkiJono(String sisaan)
     {
-        String[] numerot = sisaan.split(" ");
-        for (int i = 0; i < numerot.length; i++)
-        {
-            int tamaLuku = 0;
-            for (int a = 0; a < numerot[i].length(); a++)
-            {
-                tamaLuku *= 10;
-                tamaLuku += numerot[i].charAt(a)-'0';
-            }
-            if (numerot[i].length() > 0)
-            {
-                jono.add(tamaLuku);
-            }
-        }
+        jono = sisaan;
+        tavuSijainti = 0;
+        bittiSijainti = 0;
     }
 }

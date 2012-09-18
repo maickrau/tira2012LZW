@@ -4,7 +4,7 @@ import java.util.*;
  * pakkaa merkkijonon.
  */
 public class Pakkaaja {
-    Map<String, Integer> codeTable; //tilapäinen
+    Map<String, Integer> codeTable; //todo oma rakenne
     public Pakkaaja()
     {
         //alustetaan code tableen yhden merkin pituiset koodit

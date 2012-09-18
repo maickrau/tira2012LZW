@@ -4,7 +4,7 @@ import java.util.*;
  * avaa pakatun merkkijonon.
  */
 public class Avaaja {
-    Map<Integer, String> codeTable; //tilapäinen
+    Map<Integer, String> codeTable; //todo oma rakenne
     public Avaaja()
     {
         //alustetaan code tableen yhden merkin pituiset koodit

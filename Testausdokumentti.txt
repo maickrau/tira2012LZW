@@ -1,3 +1,27 @@
+18.9 testattu bittimuuntajan toimivuus eri bitti-per-merkki-m‰‰r‰ll‰
+sama testauskoodi kuin 8.9, bittim‰‰r‰‰ vaihdeltu muuttamalla bittimuuntajien konstruktoreja
+tulos 12 bitill‰:
+aaaaaaabcdefdefaa
+ a c@eaa 
+aaaaaaabcdefdefaa
+
+13 bitill‰:
+aaaaaaabcdefdefaa
+@1??e0A?? 
+aaaaaaabcdefdefaa
+
+9 bitill‰:
+aaaaaaabcdefdefaa
+0? &??e3A?? 
+aaaaaaabcdefdefaa
+
+15 bitill‰:
+aaaaaaabcdefdefaa
+ ?@?2 e ?0
+aaaaaaabcdefdefaa
+
+muuntaminen merkeist‰ biteiksi ja biteist‰ merkeiksi toimii molempiin suuntiin
+
 8.9 testattu pakkauksen ja avauksen toimivuus
 testauskoodi mainissa:
 
