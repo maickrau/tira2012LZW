@@ -13,7 +13,7 @@ public class BittiMuuntajaKirjoittaja {
     String jono;
     public BittiMuuntajaKirjoittaja()
     {
-        this(12);
+        this(16);
     }
     public BittiMuuntajaKirjoittaja(int bittejaMerkissa)
     {
@@ -32,12 +32,13 @@ public class BittiMuuntajaKirjoittaja {
             }
         }
     }
-    public void lisaa(int merkki)
+    public void lisaa(int merkki) throws Exception
     {
         if (merkki > isoinMerkki)
         {
-            return;
-//            throw new Exception("Liian iso merkki bittikirjoittajaan");
+//            System.out.println("Virhe: liian iso merkki bittikirjoittajaan");
+//            return;
+            throw new Exception("Liian iso merkki bittikirjoittajaan (" + merkki + ")");
         }
         tavunOsa |= (byte)(merkki >> (bittejaMerkissa-bittejaJaljellaTavussa)) & maski[bittejaJaljellaTavussa-1];
         jono = jono + (char)tavunOsa;

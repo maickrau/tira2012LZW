@@ -1,3 +1,25 @@
+24.9 testattu pakkaajan ja avaajan nopeutta javan valmiilla tietorakenteilla.
+ohjelma tarvitsee tietorakenteen johon on nopea lis‰t‰ alkioita ja etsi‰ alkioita.
+pakkaajalle k‰y rakenteet josta etsit‰‰n stringill‰ ja palautetaan int:
+hashmap lisays ~O(1) etsiminen ~O(1)
+treemap lisays O(log n) etsiminen O(log n)
+avaajalle k‰y rakenteet josta etsit‰‰n intill‰ ja palautetaan string, edellisten lis‰ksi:
+arraylist lisays ~O(1) etsiminen O(1)
+
+testitiedosto LZW.htm (80 kt)
+mainiin lis‰tty koodia ajan mittaamiseen
+java Tira2012LZW p LZW.htm tulos.txt
+hashmap pakkaukseen kesti 3657 ms
+treemap pakkaukseen kesti 4062 ms
+
+java Tira2012LZW a tulos.txt LZW2.htm
+hashmap avaukseen kesti 3641 ms
+treemap avaukseen kesti 3734 ms
+arraylist avaukseen kesti 3578 ms
+
+Hajautustaulukko on nopein pakkauksessa, oma tietorakenne kannattaa tehd‰ sen perusteella.
+Dynaaminen taulukko on nopein avaamisessa.
+
 18.9 testattu bittimuuntajan toimivuus eri bitti-per-merkki-m‰‰r‰ll‰
 sama testauskoodi kuin 8.9, bittim‰‰r‰‰ vaihdeltu muuttamalla bittimuuntajien konstruktoreja
 tulos 12 bitill‰:

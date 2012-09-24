@@ -5,7 +5,7 @@ import java.util.*;
  * handlaa vain vakionpituisia merkkejä, todo vaihteleva pituus
  */
 public class BittiMuuntajaLukija {
-    String jono;
+    byte[] jono;
     int tavuSijainti;
     int bittiSijainti;
     int bittejaMerkissa;
@@ -13,12 +13,12 @@ public class BittiMuuntajaLukija {
     byte[] alkuMaski;
     public BittiMuuntajaLukija()
     {
-        this(12);
+        this(16);
     }
     public BittiMuuntajaLukija(int bittejaMerkissa)
     {
         this.bittejaMerkissa = bittejaMerkissa;
-        jono = "";
+//        jono = "";
         tavuSijainti = 0;
         bittiSijainti = 0;
         loppuMaski = new byte[8];
@@ -39,7 +39,7 @@ public class BittiMuuntajaLukija {
     }
     public boolean onSeuraavaMerkki()
     {
-        if (tavuSijainti*8+bittiSijainti+bittejaMerkissa > jono.length()*8)
+        if (tavuSijainti*8+bittiSijainti+bittejaMerkissa > jono.length*8)
         {
             return false;
         }
@@ -48,7 +48,7 @@ public class BittiMuuntajaLukija {
     public int seuraavaMerkki()
     {
         int tulos;
-        int lisays = ((byte)jono.charAt(tavuSijainti))&loppuMaski[bittiSijainti];
+        int lisays = (jono[tavuSijainti])&loppuMaski[bittiSijainti];
         if (lisays < 0)
         {
             lisays = 256+lisays;
@@ -59,14 +59,19 @@ public class BittiMuuntajaLukija {
         while (bittejaJaljella >= 8)
         {
             tulos <<= 8;
-            tulos += (jono.charAt(tavuSijainti));
+            lisays = jono[tavuSijainti];
+            if (lisays < 0)
+            {
+                lisays += 256;
+            }
+            tulos += lisays;
             bittejaJaljella -= 8;
             tavuSijainti++;
         }
         if (bittejaJaljella > 0)
         {
             tulos <<= bittejaJaljella;
-            lisays = (int)(((byte)jono.charAt(tavuSijainti))&alkuMaski[bittejaJaljella-1]);
+            lisays = (int)((jono[tavuSijainti])&alkuMaski[bittejaJaljella-1]);
             if (lisays < 0)
             {
                 lisays = 256+lisays;
@@ -78,6 +83,16 @@ public class BittiMuuntajaLukija {
         return tulos;
     }
     public void lueMerkkiJono(String sisaan)
+    {
+        jono = new byte[sisaan.length()];
+        for (int i = 0; i < sisaan.length(); i++)
+        {
+            jono[i] = (byte)(int)sisaan.charAt(i);
+        }
+        tavuSijainti = 0;
+        bittiSijainti = 0;
+    }
+    public void lueMerkkiJono(byte[] sisaan)
     {
         jono = sisaan;
         tavuSijainti = 0;

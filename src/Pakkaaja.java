@@ -11,17 +11,30 @@ public class Pakkaaja {
         codeTable = new HashMap<String, Integer>();
         for (int i = 0; i < 256; i++)
         {
-            codeTable.put(""+(char)i, i);
+            codeTable.put(""+(char)(i), i);
         }
     }
-    public String pakkaa(String sisaan)
+    public String pakkaa(String sisaan) throws Exception
+    {
+        byte[] bytet = new byte[sisaan.length()];
+        for (int i = 0; i < bytet.length; i++)
+        {
+            bytet[i] = (byte)(int)sisaan.charAt(i);
+        }
+        return pakkaa(bytet);
+    }
+    public String pakkaa(byte[] sisaan) throws Exception
     {
         BittiMuuntajaKirjoittaja tulos = new BittiMuuntajaKirjoittaja();
         int sijaintiStringissa = 0;
         String osaString = "";
-        while (sijaintiStringissa < sisaan.length())
+        while (sijaintiStringissa < sisaan.length)
         {
-            char yksiMerkki = sisaan.charAt(sijaintiStringissa);
+            char yksiMerkki = (char)(sisaan[sijaintiStringissa]);
+            if (yksiMerkki >= 256)
+            {
+                yksiMerkki = (char)(yksiMerkki % 256);
+            }
             if (codeTable.containsKey(osaString+yksiMerkki))
             {
                 osaString = osaString+yksiMerkki;
