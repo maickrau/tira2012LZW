@@ -13,7 +13,7 @@ public class BittiMuuntajaKirjoittaja {
     String jono;
     public BittiMuuntajaKirjoittaja()
     {
-        this(15);
+        this(12);
     }
     public BittiMuuntajaKirjoittaja(int bittejaMerkissa)
     {

@@ -13,7 +13,7 @@ public class BittiMuuntajaLukija {
     byte[] alkuMaski;
     public BittiMuuntajaLukija()
     {
-        this(15);
+        this(12);
     }
     public BittiMuuntajaLukija(int bittejaMerkissa)
     {
