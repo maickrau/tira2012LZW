@@ -1,9 +1,8 @@
-import java.util.*;
-
 /**
- * lukee pakatun stringin ja palauttaa merkkejä yksi kerrallaan.
+ * lukee pakatut tavut ja palauttaa merkkejä yksi kerrallaan.
  * handlaa vain vakionpituisia merkkejä, todo vaihteleva pituus
  */
+//todo vaihteleva bittimäärä per merkki
 public class BittiMuuntajaLukija {
     byte[] jono;
     int tavuSijainti;
@@ -17,8 +16,8 @@ public class BittiMuuntajaLukija {
     }
     public BittiMuuntajaLukija(int bittejaMerkissa)
     {
+        jono = null;
         this.bittejaMerkissa = bittejaMerkissa;
-//        jono = "";
         tavuSijainti = 0;
         bittiSijainti = 0;
         loppuMaski = new byte[8];
@@ -39,6 +38,10 @@ public class BittiMuuntajaLukija {
     }
     public boolean onSeuraavaMerkki()
     {
+        if (jono == null)
+        {
+            return false;
+        }
         if (tavuSijainti*8+bittiSijainti+bittejaMerkissa > jono.length*8)
         {
             return false;
@@ -47,6 +50,10 @@ public class BittiMuuntajaLukija {
     }
     public int seuraavaMerkki()
     {
+        if (jono == null)
+        {
+            return -1;
+        }
         int tulos;
         int lisays = (jono[tavuSijainti])&loppuMaski[bittiSijainti];
         if (lisays < 0)

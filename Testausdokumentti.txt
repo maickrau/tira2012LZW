@@ -1,3 +1,16 @@
+26.9 testattu omien tietorakenteiden nopeutta
+pakkauksessa hajautustaulukko jossa avaimena string ja arvona int
+avauksessa dynaaminen taulukko jossa arvona string
+
+testitiedosto LZW.htm (80 kt)
+java Tira2012LZW p LZW.htm tulos.txt
+pakkaus 3959 ms
+
+java Tira2012LZW a tulos.txt LZW2.htm
+avaus 3582 ms
+
+hajautustaulukko hitaampi kuin javan valmis HashMap, dynaaminen taulukko yht‰ nopea kuin javan ArrayList
+
 24.9 testattu pakkaajan ja avaajan nopeutta javan valmiilla tietorakenteilla.
 ohjelma tarvitsee tietorakenteen johon on nopea lis‰t‰ alkioita ja etsi‰ alkioita.
 pakkaajalle k‰y rakenteet josta etsit‰‰n stringill‰ ja palautetaan int:

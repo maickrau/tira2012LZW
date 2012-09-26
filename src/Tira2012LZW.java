@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.io.*;
 
 public class Tira2012LZW {
@@ -11,11 +10,7 @@ public class Tira2012LZW {
         int alku = 0;
         while (tavujaJaljella > 0)
         {
-//            fileRead.read(tulos);
-            for (int i = alku; i < alku+tavujaJaljella; i++)
-            {
-                tulos[i] = (byte)fileRead.read();
-            }
+            fileRead.read(tulos, alku, tavujaJaljella);
             alku += tavujaJaljella;
             tavujaJaljella = fileRead.available();
             if (tavujaJaljella > 0)
@@ -66,7 +61,10 @@ public class Tira2012LZW {
                     annaInfoa = true;
                 }
                 aikaEnnenKirjoitusta = System.currentTimeMillis();
-                kirjoitaTiedosto(args[2], stringUlos);
+                if (!annaInfoa)
+                {
+                  kirjoitaTiedosto(args[2], stringUlos);
+                }
             }
             catch (Exception e)
             {

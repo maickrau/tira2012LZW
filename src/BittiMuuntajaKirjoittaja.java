@@ -1,9 +1,8 @@
-import java.util.*;
-
 /**
  * ottaa sisaan merkkejä, muuntaa ne stringiin joka kirjoitetaan tiedostoon.
  * handlaa vain vakiopituisia merkkejä. todo vaihteleva bittien määrä per merkki
  */
+//todo vaihteleva bittimäärä per merkki
 public class BittiMuuntajaKirjoittaja {
     byte tavunOsa;
     byte[] maski;
@@ -51,32 +50,6 @@ public class BittiMuuntajaKirjoittaja {
         }
         tavunOsa = (byte)(merkki << (8-ylijaamaBitteja));
         bittejaJaljellaTavussa = 8-ylijaamaBitteja;
-    }
-    public String bititStringina()
-    {
-        String tulos = "";
-        int seuraavaVali = bittejaMerkissa;
-        for (int i = 0; i < jono.length(); i++)
-        {
-            for (int a = 0; a < 8; a++)
-            {
-                if (((byte)jono.charAt(i) & ((byte)1 << (7-a))) != 0)
-                {
-                    tulos = tulos + "1";
-                }
-                else
-                {
-                    tulos = tulos + "0";
-                }
-                seuraavaVali--;
-                if (seuraavaVali == 0)
-                {
-                    tulos = tulos + " ";
-                    seuraavaVali = bittejaMerkissa;
-                }
-            }
-        }
-        return tulos;
     }
     public String toString()
     {

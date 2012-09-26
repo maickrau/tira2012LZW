@@ -1,20 +1,15 @@
-import java.util.*;
-
 /**
  * avaa pakatun merkkijonon.
  */
 public class Avaaja {
-    Map<Integer, String> codeTable; //todo oma rakenne
-//    ArrayList<String> codeTable;
+    DynaaminenTaulukko codeTable;
     public Avaaja()
     {
         //alustetaan code tableen yhden merkin pituiset koodit
-        codeTable = new TreeMap<Integer, String>();
-//        codeTable = new ArrayList<String>();
+        codeTable = new DynaaminenTaulukko();
         for (int i = 0; i < 256; i++)
         {
-            codeTable.put(i, ""+(char)i);
-//            codeTable.add(""+(char)i);
+            codeTable.lisaa(""+(char)i);
         }
     }
     public String avaa(String merkit)
@@ -32,25 +27,23 @@ public class Avaaja {
         BittiMuuntajaLukija lukija = new BittiMuuntajaLukija();
         lukija.lueMerkkiJono(merkit);
         int koodi = lukija.seuraavaMerkki();
-        tulos = tulos + codeTable.get(koodi);
+        tulos = tulos + codeTable.hae(koodi);
         char yksiMerkki = (char)koodi;
         while (lukija.onSeuraavaMerkki())
         {
             int uusiKoodi = lukija.seuraavaMerkki();
             String osaString;
-            if (!codeTable.containsKey(uusiKoodi))
-//            if (codeTable.size() <= uusiKoodi)
+            if (codeTable.koko() <= uusiKoodi)
             {
-                osaString = codeTable.get(koodi)+yksiMerkki;
+                osaString = codeTable.hae(koodi)+yksiMerkki;
             }
             else
             {
-                osaString = codeTable.get(uusiKoodi);
+                osaString = codeTable.hae(uusiKoodi);
             }
             tulos = tulos + osaString;
             yksiMerkki = osaString.charAt(0);
-            codeTable.put(codeTable.size(), codeTable.get(koodi)+yksiMerkki);
-//            codeTable.add((codeTable.get(koodi)+yksiMerkki));
+            codeTable.lisaa(codeTable.hae(koodi)+yksiMerkki);
             koodi = uusiKoodi;
         }
         return tulos;

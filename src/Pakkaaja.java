@@ -1,17 +1,15 @@
-import java.util.*;
-
 /**
  * pakkaa merkkijonon.
  */
 public class Pakkaaja {
-    Map<String, Integer> codeTable; //todo oma rakenne
+    StringIntHajautusTaulukko codeTable;
     public Pakkaaja()
     {
         //alustetaan code tableen yhden merkin pituiset koodit
-        codeTable = new HashMap<String, Integer>();
+        codeTable = new StringIntHajautusTaulukko();
         for (int i = 0; i < 256; i++)
         {
-            codeTable.put(""+(char)(i), i);
+            codeTable.lisaa(""+(char)(i), i);
         }
     }
     public String pakkaa(String sisaan) throws Exception
@@ -35,19 +33,19 @@ public class Pakkaaja {
             {
                 yksiMerkki = (char)(yksiMerkki % 256);
             }
-            if (codeTable.containsKey(osaString+yksiMerkki))
+            if (codeTable.sisaltaa(osaString+yksiMerkki))
             {
                 osaString = osaString+yksiMerkki;
             }
             else
             {
-                tulos.lisaa(codeTable.get(osaString));
-                codeTable.put(osaString+yksiMerkki, codeTable.size());
+                tulos.lisaa(codeTable.etsi(osaString));
+                codeTable.lisaa(osaString+yksiMerkki, codeTable.koko());
                 osaString = ""+yksiMerkki;
             }
             sijaintiStringissa++;
         }
-        tulos.lisaa(codeTable.get(osaString));
+        tulos.lisaa(codeTable.etsi(osaString));
         return tulos.toString();
     }
 }
