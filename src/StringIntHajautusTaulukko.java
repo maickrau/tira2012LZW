@@ -2,7 +2,7 @@
  * Hajautustaulukko, avaimena String, arvona int.
  */
 public class StringIntHajautusTaulukko {
-    final int m = 1559; //vakio hajautusfunktio
+    final int m = 1559; //vakio hajautusfunktiossa
     int[] intArvot;
     String[] stringArvot;
     int arvoja;
@@ -40,7 +40,7 @@ public class StringIntHajautusTaulukko {
     }
     private int stringinHash(String taa, int yritys)
     {
-        long a = 0;
+        long a = 7;
         for (int i = 0; i < taa.length(); i++)
         {
             a *= m;

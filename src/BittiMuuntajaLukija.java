@@ -1,23 +1,23 @@
 /**
  * lukee pakatut tavut ja palauttaa merkkejä yksi kerrallaan.
- * handlaa vain vakionpituisia merkkejä, todo vaihteleva pituus
  */
-//todo vaihteleva bittimäärä per merkki
 public class BittiMuuntajaLukija {
     byte[] jono;
     int tavuSijainti;
     int bittiSijainti;
     int bittejaMerkissa;
+    int isoinMerkki;
     byte[] loppuMaski;
     byte[] alkuMaski;
     public BittiMuuntajaLukija()
     {
-        this(16);
+        this(9);
     }
     public BittiMuuntajaLukija(int bittejaMerkissa)
     {
         jono = null;
         this.bittejaMerkissa = bittejaMerkissa;
+        isoinMerkki = (int)Math.pow(2, bittejaMerkissa)-1;
         tavuSijainti = 0;
         bittiSijainti = 0;
         loppuMaski = new byte[8];
@@ -87,6 +87,11 @@ public class BittiMuuntajaLukija {
             tulos += lisays;
         }
         bittiSijainti = bittejaJaljella;
+        if (tulos == isoinMerkki)
+        {
+            kasvataMerkinKokoa();
+            return seuraavaMerkki();
+        }
         return tulos;
     }
     public void lueMerkkiJono(String sisaan)
@@ -98,6 +103,11 @@ public class BittiMuuntajaLukija {
         }
         tavuSijainti = 0;
         bittiSijainti = 0;
+    }
+    private void kasvataMerkinKokoa()
+    {
+        bittejaMerkissa++;
+        isoinMerkki = (int)Math.pow(2, bittejaMerkissa)-1;
     }
     public void lueMerkkiJono(byte[] sisaan)
     {

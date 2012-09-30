@@ -1,8 +1,6 @@
 /**
  * ottaa sisaan merkkejä, muuntaa ne stringiin joka kirjoitetaan tiedostoon.
- * handlaa vain vakiopituisia merkkejä. todo vaihteleva bittien määrä per merkki
  */
-//todo vaihteleva bittimäärä per merkki
 public class BittiMuuntajaKirjoittaja {
     byte tavunOsa;
     byte[] maski;
@@ -12,7 +10,7 @@ public class BittiMuuntajaKirjoittaja {
     String jono;
     public BittiMuuntajaKirjoittaja()
     {
-        this(16);
+        this(9);
     }
     public BittiMuuntajaKirjoittaja(int bittejaMerkissa)
     {
@@ -20,7 +18,7 @@ public class BittiMuuntajaKirjoittaja {
         tavunOsa = 0;
         bittejaJaljellaTavussa = 8;
         this.bittejaMerkissa = bittejaMerkissa;
-        isoinMerkki = (int)Math.pow(2, bittejaMerkissa);
+        isoinMerkki = (int)Math.pow(2, bittejaMerkissa)-1;
         maski = new byte[8];
         for (int i = 0; i < 8; i++)
         {
@@ -31,14 +29,21 @@ public class BittiMuuntajaKirjoittaja {
             }
         }
     }
-    public void lisaa(int merkki) throws Exception
+    public void lisaa(int merkki)
     {
-        if (merkki > isoinMerkki)
+        if (merkki >= isoinMerkki)
         {
-//            System.out.println("Virhe: liian iso merkki bittikirjoittajaan");
-//            return;
-            throw new Exception("Liian iso merkki bittikirjoittajaan (" + merkki + ")");
+            lisaaOikeasti(isoinMerkki);
+            kasvataMerkinKokoa();
+            lisaa(merkki);
         }
+        else
+        {
+            lisaaOikeasti(merkki);
+        }
+    }
+    private void lisaaOikeasti(int merkki)
+    {
         tavunOsa |= (byte)(merkki >> (bittejaMerkissa-bittejaJaljellaTavussa)) & maski[bittejaJaljellaTavussa-1];
         jono = jono + (char)tavunOsa;
         int ylijaamaBitteja = bittejaMerkissa-bittejaJaljellaTavussa;
@@ -50,6 +55,11 @@ public class BittiMuuntajaKirjoittaja {
         }
         tavunOsa = (byte)(merkki << (8-ylijaamaBitteja));
         bittejaJaljellaTavussa = 8-ylijaamaBitteja;
+    }
+    private void kasvataMerkinKokoa()
+    {
+        bittejaMerkissa++;
+        isoinMerkki = (int)Math.pow(2, bittejaMerkissa)-1;
     }
     public String toString()
     {
