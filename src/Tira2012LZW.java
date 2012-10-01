@@ -41,35 +41,42 @@ public class Tira2012LZW {
         long aikaEnnenKirjoitusta = aikaAlussa;
         if (args.length == 3)
         {
-            try
+            if (args[0].compareTo("p") == 0 || args[0].compareTo("a") == 0)
             {
-                byte[] stringSisaan = lueTiedosto(args[1]);
-                aikaLuettua = System.currentTimeMillis();
-                String stringUlos = "";
-                if (args[0].compareTo("p") == 0)
+                try
                 {
-                    Pakkaaja pakkaaja = new Pakkaaja();
-                    stringUlos = pakkaaja.pakkaa(stringSisaan);
+                    byte[] stringSisaan = lueTiedosto(args[1]);
+                    aikaLuettua = System.currentTimeMillis();
+                    String stringUlos = "";
+                    if (args[0].compareTo("p") == 0)
+                    {
+                        Pakkaaja pakkaaja = new Pakkaaja();
+                        stringUlos = pakkaaja.pakkaa(stringSisaan);
+                    }
+                    else if (args[0].compareTo("a") == 0)
+                    {
+                        Avaaja avaaja = new Avaaja();
+                        stringUlos = avaaja.avaa(stringSisaan);
+                    }
+                    else
+                    {
+                        annaInfoa = true;
+                    }
+                    aikaEnnenKirjoitusta = System.currentTimeMillis();
+                    if (!annaInfoa)
+                    {
+                      kirjoitaTiedosto(args[2], stringUlos);
+                    }
                 }
-                else if (args[0].compareTo("a") == 0)
+                catch (Exception e)
                 {
-                    Avaaja avaaja = new Avaaja();
-                    stringUlos = avaaja.avaa(stringSisaan);
-                }
-                else
-                {
-                    annaInfoa = true;
-                }
-                aikaEnnenKirjoitusta = System.currentTimeMillis();
-                if (!annaInfoa)
-                {
-                  kirjoitaTiedosto(args[2], stringUlos);
+                    System.out.println("Virhe:");
+                    System.out.println(e.toString());
                 }
             }
-            catch (Exception e)
+            else
             {
-                System.out.println("Virhe:");
-                System.out.println(e.toString());
+                annaInfoa = true;
             }
 
         }

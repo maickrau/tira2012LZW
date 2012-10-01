@@ -45,8 +45,8 @@ public class StringIntHajautusTaulukko {
         {
             a *= m;
             a += taa.charAt(i);
-            a += yritys;
         }
+        a += yritys;
         int tulos = (int)(a % intArvot.length);
         if (tulos < 0)
         {

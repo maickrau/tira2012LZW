@@ -1,0 +1,7 @@
+laitoksen koneella joten nopeampia kuin testausdokun aikaisemmat
+
+LZW.htm 80,9 kB -> 33.3 kB  364 ms avaus 671 ms
+hash.html 3.3 kB -> 2.0 kB  62 ms avaus 37 ms
+aaa.txt 80.8 kB -> 471 B    877 ms avaus 43 ms
+LZW_Data_Compression.html 291.4 kB -> 95.8 kB 1573 ms avaus 2910 ms
+karhu.bmp 201.4 kB -> 166.0 kB 5273 ms avaus 2939 ms
