@@ -1,0 +1,30 @@
+Ohjelma pakkaa tiedostoja LZW-algoritmilla. Pakkaajalla on hajautustaulukko jolla muunnetaan merkkijonot koodeiksi. Koodit kirjoitetaan bittimuuntajalla koodi kerrallaan merkkijonoksi joka kirjoitetaan tiedostoon. Koodin pituus vaihtelee, aloittaen 9 bittiä/koodi ja kasvaen kun tulee koodi joka ei mahdu vanhaan pituuteen. Bittikirjoittaja laittaa tällöin ylimääräisen merkin pakattuun merkkijonoon joka kertoo lukijalle että koodin pituus kasvaa yhdellä bitillä.
+
+Avaaja kysyy bittilukijalta koodeja yksi kerrallaan. Koodeista pidetään dynaamista taulukkoa jossa n:s alkio on merkkijono jota n koodaa. Bittilukija lukee merkkijonosta vaihtelevan pituisia koodeja ja palauttaa niitä avaajalle. Lukija tietää kasvattaa koodin pituutta (k+1) -bittiseksi kun se lukee koodin (2^k)-1.
+
+
+
+
+
+
+Saavutetut aika- ja tilavaativuudet (m.m. O-analyysi pseudokoodista)
+
+Avaaja: 
+joka merkillä 2 hakua ja 1 lisäys dynaamisesta taulukosta, haku/lisäys on O(1) [tira luentomateriaali s. 89]
+yhteensä O(n) jossa n on merkkien määrä, huom testauksen perusteella ei toteudu? (karhu.bmp vs LZW_Data_Compression.html ja aaa.txt vs hash.html)
+
+Pakkaaja:
+joka merkillä 1 etsintä, mahdollisesti 1 lisäys, molemmat hajautustaulukkoon.
+etsintä/lisäys hajautustaulukosta molemmat O(1) [tira luentomateriaali s. 89]
+yhteensä O(n), n merkkien määrä. taas ei toimi? (LZW.htm vs aaa.txt, karhu.bmp vs LZW_Data_Compression.html)
+
+Suorituskyky- ja O-analyysivertailu (mikäli työ vertailupainotteinen)
+
+
+
+Työn mahdolliset puutteet ja parannusehdotukset
+
+
+
+Lähteet
+tira luentomateriaali www.cs.helsinki.fi/group/java/k11/tira/tira2011.pdf 
