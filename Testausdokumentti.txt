@@ -1,3 +1,13 @@
+1.10 testattu pakkauksen aikaa ja pakatun tiedoston kokoa eri tiedostoilla
+testaus laitoksen koneella joten ajat erisuuruisia kuin aikaisemmissa testauksissa
+
+Tiedosto                   Koko      Koko pakattuna  Pakkaussuhde  Aika pakkaukseen   Aika avaukseen
+LZW.htm                    80,9 kt   33,3 kt         0,412         364 ms             671 ms
+hash.html                  3,3 kt    2,0 kt          0,607         62 ms              37 ms
+aaa.txt                    80,8 kt   471 t           0,006         877 ms             43 ms
+LZW_Data_Compression.html  291,4 kt  95,8 kt         0,329         1573 ms            2910 ms
+karhu.bmp                  201,4 kt  166,0 kt        0,824         5273 ms            2939 ms
+
 26.9 testattu omien tietorakenteiden nopeutta
 pakkauksessa hajautustaulukko jossa avaimena string ja arvona int
 avauksessa dynaaminen taulukko jossa arvona string

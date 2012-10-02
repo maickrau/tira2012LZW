@@ -1,29 +1,25 @@
+﻿Yleisrakenne
+
 Ohjelma pakkaa tiedostoja LZW-algoritmilla. Pakkaajalla on hajautustaulukko jolla muunnetaan merkkijonot koodeiksi. Koodit kirjoitetaan bittimuuntajalla koodi kerrallaan merkkijonoksi joka kirjoitetaan tiedostoon. Koodin pituus vaihtelee, aloittaen 9 bittiä/koodi ja kasvaen kun tulee koodi joka ei mahdu vanhaan pituuteen. Bittikirjoittaja laittaa tällöin ylimääräisen merkin pakattuun merkkijonoon joka kertoo lukijalle että koodin pituus kasvaa yhdellä bitillä.
 
 Avaaja kysyy bittilukijalta koodeja yksi kerrallaan. Koodeista pidetään dynaamista taulukkoa jossa n:s alkio on merkkijono jota n koodaa. Bittilukija lukee merkkijonosta vaihtelevan pituisia koodeja ja palauttaa niitä avaajalle. Lukija tietää kasvattaa koodin pituutta (k+1) -bittiseksi kun se lukee koodin (2^k)-1.
 
 
-
-
-
-
-Saavutetut aika- ja tilavaativuudet (m.m. O-analyysi pseudokoodista)
+Aikavaativuudet
 
 Avaaja: 
-joka merkillä 2 hakua ja 1 lisäys dynaamisesta taulukosta, haku/lisäys on O(1) [tira luentomateriaali s. 89]
-yhteensä O(n) jossa n on merkkien määrä, huom testauksen perusteella ei toteudu? (karhu.bmp vs LZW_Data_Compression.html ja aaa.txt vs hash.html)
+Jokaisella merkillä tehdään 2 hakua ja 1 lisäys dynaamiseen taulukkoon. Taulukon haku ja lisäys ovat molemmat O(1) [tira luentomateriaali s. 89]
+Yhteensä O(n) jossa n on merkkien määrä. Testauksen perusteella aika kuitenkin vaihtelee samanpituisillakin syötteillä paljon, esimerkiksi karhu.bmp:n ja LZW_Data_Compression.html:n pakattujen tiedostojen avaus vie yhtä paljon aikaa vaikka karhu.bmp:n pakattu tiedosto on 1.7 kertaa suurempi.
 
 Pakkaaja:
-joka merkillä 1 etsintä, mahdollisesti 1 lisäys, molemmat hajautustaulukkoon.
-etsintä/lisäys hajautustaulukosta molemmat O(1) [tira luentomateriaali s. 89]
-yhteensä O(n), n merkkien määrä. taas ei toimi? (LZW.htm vs aaa.txt, karhu.bmp vs LZW_Data_Compression.html)
-
-Suorituskyky- ja O-analyysivertailu (mikäli työ vertailupainotteinen)
+Jokaisella merkillä 1 etsintä, mahdollisesti 1 lisäys, hajautustaulukkoon.
+Etsintä ja lisäys hajautustaulukosta ovat molemmat O(1). [tira luentomateriaali s. 89]
+Yhteensä O(n) jossa n on merkkien määrä. Testauksen perusteella aika vaihtelee samanpituisilla syötteillä paljon, esimerkiksi LZW.htm:n pakkaus vie alle puolet aaa.txt:n pakkauksesta vaikka molemmat tiedostot ovat yhtä suuria.
 
 
+Mahdolliset puutteet ja parannusehdotukset
 
-Työn mahdolliset puutteet ja parannusehdotukset
-
+Pakattavan tiedoston eri kohdissa saattaa olla erilaista dataa. Tällöin aikaisemmin rakennettu kooditaulukko ei pakkaa myöhempää dataa hyvin. Vahtimalla pakkaussuhdetta kooditaulukon voi tyhjentää kun siitä tulee epätehokas.
 
 
 Lähteet
