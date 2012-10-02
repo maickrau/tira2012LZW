@@ -1,3 +1,3 @@
 tira2012LZW
 ===========
-test
+Lempel-Ziv-Welch pakkausalgoritmin toteutus tietorakenteiden harjoitustyönä
