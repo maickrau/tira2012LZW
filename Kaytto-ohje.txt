@@ -1,3 +1,2 @@
-﻿Ohjelma tulee kääntää ensin komennolla "javac *.java". Käännetty ohjelma suoritetaan joko "java Tira2012LZW p ___ ___" pakattaessa tiedostoa tai "java Tira2012LZW a ___ ___" avattaessa tiedostoa. Ensimmäinen "___" on tiedosto joka pakataan tai avataan ja toinen on tiedosto johon pakattu/avattu tiedosto kirjoitetaan. Muilla syötteillä ohjelma kertoo millainen syötteen pitäisi olla. Tiedostoissa voi olla minkälaista tahansa tietoa.
+Jar -tiedosto ja testitiedostot ovat kansiossa testaus. Ohjelma suoritetaan joko "java -jar Tira2012LZW.jar p ___ ___" pakattaessa tiedostoa tai "java -jar Tira2012LZW.jar a ___ ___" avattaessa tiedostoa. Ensimmäinen "___" on tiedosto joka pakataan tai avataan ja toinen on tiedosto johon pakattu/avattu tiedosto kirjoitetaan. Muilla syötteillä ohjelma kertoo millainen syötteen pitäisi olla. Tiedostoissa voi olla minkälaista tahansa tietoa.
 
-Testitiedostot ovat kansiossa testaus\
