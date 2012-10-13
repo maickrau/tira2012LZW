@@ -2,11 +2,29 @@
  * ottaa sisaan merkkejä, muuntaa ne stringiin joka kirjoitetaan tiedostoon.
  */
 public class BittiMuuntajaKirjoittaja {
+    /**
+     * Nykyinen tavu johon lisätään bittejä
+     */
     byte tavunOsa;
+    /**
+     * Bittimaski tavun viimeisistä biteistä, n:llä indeksillä viimeiset (n+1) bittiä ovat 1 ja muut 0
+     */
     byte[] maski;
+    /**
+     * Monta bittiä johon ei ole kirjoitettu on jäljellä nykyisessä tavussa
+     */
     int bittejaJaljellaTavussa;
+    /**
+     * Monta bittiä yhdessä merkissä on
+     */
     int bittejaMerkissa;
+    /**
+     * Isoin merkki joka nykyisellä bittimäärällä voi olla
+     */
     int isoinMerkki;
+    /**
+     * Pakattut merkit
+     */
     String jono;
     public BittiMuuntajaKirjoittaja()
     {
@@ -29,6 +47,10 @@ public class BittiMuuntajaKirjoittaja {
             }
         }
     }
+    /**
+     * Yrittää lisätä merkin kirjoitettavaan jonoon. Jos merkki on liian iso, lisätään "kasvata koodin pituutta" -merkki ennen sitä.
+     * @param merkki lisättävä merkki
+     */
     public void lisaa(int merkki)
     {
         if (merkki >= isoinMerkki)
@@ -42,6 +64,10 @@ public class BittiMuuntajaKirjoittaja {
             lisaaOikeasti(merkki);
         }
     }
+    /**
+     * Lisää merkin kirjoitettavaan jonoon.
+     * @param merkki lisättävä merkki
+     */
     private void lisaaOikeasti(int merkki)
     {
         tavunOsa |= (byte)(merkki >> (bittejaMerkissa-bittejaJaljellaTavussa)) & maski[bittejaJaljellaTavussa-1];
@@ -56,6 +82,9 @@ public class BittiMuuntajaKirjoittaja {
         tavunOsa = (byte)(merkki << (8-ylijaamaBitteja));
         bittejaJaljellaTavussa = 8-ylijaamaBitteja;
     }
+    /**
+     * Kasvattaa merkin kokoa yhdellä bitillä.
+     */
     private void kasvataMerkinKokoa()
     {
         bittejaMerkissa++;

@@ -12,7 +12,12 @@ public class Pakkaaja {
             codeTable.lisaa(""+(char)(i), i);
         }
     }
-    public String pakkaa(String sisaan) throws Exception
+    /**
+     * Pakkaa merkkijonon.
+     * @param sisaan pakattava merkkijono
+     * @return pakattu merkkijono
+     */
+    public String pakkaa(String sisaan)
     {
         byte[] bytet = new byte[sisaan.length()];
         for (int i = 0; i < bytet.length; i++)
@@ -21,7 +26,12 @@ public class Pakkaaja {
         }
         return pakkaa(bytet);
     }
-    public String pakkaa(byte[] sisaan) throws Exception
+    /**
+     * Pakkaa merkkijonon.
+     * @param sisaan pakattava merkkijono
+     * @return pakattu merkkijono
+     */
+    public String pakkaa(byte[] sisaan)
     {
         BittiMuuntajaKirjoittaja tulos = new BittiMuuntajaKirjoittaja();
         int sijaintiStringissa = 0;

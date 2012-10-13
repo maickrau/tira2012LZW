@@ -3,6 +3,9 @@
  */
 public class DynaaminenTaulukko {
     String[] arvot;
+    /**
+     * Monta arvoa taulukossa on tällä hetkellä, ei ole sama kuin arvot.length
+     */
     int arvoja;
     public DynaaminenTaulukko()
     {
@@ -17,10 +20,19 @@ public class DynaaminenTaulukko {
         arvot = new String[koko];
         arvoja = 0;
     }
+    /**
+     * monta arvoa taulukossa on
+     * @return
+     */
     public int koko()
     {
         return arvoja;
     }
+    /**
+     * Hakee stringin tietystä indeksistä.
+     * @param taa indeksi josta haetaan
+     * @return string joka on indeksissä, tai null jos sitä ei ole
+     */
     public String hae(int taa)
     {
         if (arvoja < taa)
@@ -30,6 +42,10 @@ public class DynaaminenTaulukko {
         }
         return arvot[taa];
     }
+    /**
+     * Lisää stringin taulukkoon.
+     * @param taa string joka lisätään
+     */
     public void lisaa(String taa)
     {
         arvot[arvoja] = taa;
@@ -39,6 +55,9 @@ public class DynaaminenTaulukko {
             kasvata();
         }
     }
+    /**
+     * Kasvattaa taulukon koon kaksinkertaiseksi.
+     */
     private void kasvata()
     {
         String[] vanha = arvot;

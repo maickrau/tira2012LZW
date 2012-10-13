@@ -2,11 +2,23 @@
  * Hajautustaulukko, avaimena String, arvona int.
  */
 public class StringIntHajautusTaulukko {
-    final int m = 1559; //vakio hajautusfunktiossa
+    /**
+     * Vakio hajautusfunktiossa
+     */
+    final int m = 1559;
+    /**
+     * Numeroarvo joka annetaan stringille
+     */
     int[] intArvot;
     String[] stringArvot;
+    /**
+     * Monta arvoa taulukossa on tällä hetkellä
+     */
     int arvoja;
-    double arvojaEnnenKasvatusta; //taulukkoa kasvatetaan kun arvot/koko tätä suurempi
+    /**
+     * Miten suuri (arvojen määrä)/(taulukon koko) on suurimmillaan ennen kuin taulukon kokoa kasvatetaan
+     */
+    double arvojaEnnenKasvatusta;
     public StringIntHajautusTaulukko(int koko, double arvojaEnnenKasvatusta)
     {
         if (arvojaEnnenKasvatusta > 0.95)
@@ -38,6 +50,12 @@ public class StringIntHajautusTaulukko {
     {
         this(512, 0.75);
     }
+    /**
+     * Laskee stringille indeksin. Eri yrityksen tulee tuottaa eri indeksi.
+     * @param taa string jolle lasketaan
+     * @param yritys monennetta kertaa yritetään
+     * @return 
+     */
     private int stringinHash(String taa, int yritys)
     {
         long a = 7;
@@ -54,10 +72,19 @@ public class StringIntHajautusTaulukko {
         }
         return tulos;
     }
+    /**
+     * monta arvoa taulukossa on
+     * @return 
+     */
     public int koko()
     {
         return arvoja;
     }
+    /**
+     * Sisältääkö etsityn stringin.
+     * @param taa string jota etsitään
+     * @return 
+     */
     public boolean sisaltaa(String taa)
     {
         int yritys = 0;
@@ -74,6 +101,11 @@ public class StringIntHajautusTaulukko {
         } while (taa.compareTo(stringArvot[kohde]) != 0);
         return true;
     }
+    /**
+     * Palauttaa etsityn stringin arvon.
+     * @param taa string jota etsitään
+     * @return stringin indeksi, tai -1 jos ei löydy.
+     */
     public int etsi(String taa)
     {
         int yritys = 0;
@@ -90,6 +122,11 @@ public class StringIntHajautusTaulukko {
         } while (taa.compareTo(stringArvot[kohde]) != 0);
         return intArvot[kohde];
     }
+    /**
+     * Lisää stringin tietyllä arvolla
+     * @param taa string jota lisätään
+     * @param numero arvo joka annetaan stringille
+     */
     public void lisaa(String taa, int numero)
     {
         arvoja++;
@@ -107,6 +144,9 @@ public class StringIntHajautusTaulukko {
             kasvataTaulukkoa();
         }
     }
+    /**
+     * Kasvattaa taulukon koon kaksinkertaiseksi ja laskee arvoille uudet indeksit.
+     */
     private void kasvataTaulukkoa()
     {
         String[] vanhaS = stringArvot;

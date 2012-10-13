@@ -2,12 +2,33 @@
  * lukee pakatut tavut ja palauttaa merkkejä yksi kerrallaan.
  */
 public class BittiMuuntajaLukija {
+    /**
+     * Merkkijono josta luetaan merkkejä
+     */
     byte[] jono;
+    /**
+     * Monennetta tavua luetaan
+     */
     int tavuSijainti;
+    /**
+     * Monennetta bittiä nykyisen tavun sisällä luetaan
+     */
     int bittiSijainti;
+    /**
+     * Monta bittiä yhdessä merkissä on
+     */
     int bittejaMerkissa;
+    /**
+     * Isoin merkki joka nykyisellä bittimäärällä voi olla
+     */
     int isoinMerkki;
+    /**
+     * Bittimaski tavun viimeisistä biteistä, n:ssä indeksissä ensimmäiset n ovat 0, loput 1
+     */
     byte[] loppuMaski;
+    /**
+     * Bittimaski tavun ensimmäisistä biteistä, n:ssä indeksissä ensimmäiset n ovat 1, loput 0
+     */
     byte[] alkuMaski;
     public BittiMuuntajaLukija()
     {
@@ -36,6 +57,10 @@ public class BittiMuuntajaLukija {
             }
         }
     }
+    /**
+     * Kysyy onko jonossa vielä merkkejä joita ei olla luettu.
+     * @return 
+     */
     public boolean onSeuraavaMerkki()
     {
         if (jono == null)
@@ -48,6 +73,10 @@ public class BittiMuuntajaLukija {
         }
         return true;
     }
+    /**
+     * Palauttaa seuraavan merkin jonosta.
+     * @return merkki
+     */
     public int seuraavaMerkki()
     {
         if (jono == null)
@@ -94,6 +123,10 @@ public class BittiMuuntajaLukija {
         }
         return tulos;
     }
+    /**
+     * Ottaa vastaan merkkijonon josta merkit luetaan.
+     * @param sisaan merkkijono
+     */
     public void lueMerkkiJono(String sisaan)
     {
         jono = new byte[sisaan.length()];
@@ -104,11 +137,18 @@ public class BittiMuuntajaLukija {
         tavuSijainti = 0;
         bittiSijainti = 0;
     }
+    /**
+     * Kasvattaa merkin pituutta yhdellä bitillä
+     */
     private void kasvataMerkinKokoa()
     {
         bittejaMerkissa++;
         isoinMerkki = (int)Math.pow(2, bittejaMerkissa)-1;
     }
+    /**
+     * Ottaa vastaan merkkijonon josta merkit luetaan.
+     * @param sisaan merkkijono
+     */
     public void lueMerkkiJono(byte[] sisaan)
     {
         jono = sisaan;

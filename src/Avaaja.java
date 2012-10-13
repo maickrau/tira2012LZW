@@ -12,6 +12,11 @@ public class Avaaja {
             codeTable.lisaa(""+(char)i);
         }
     }
+    /**
+     * Avaa pakatun merkkijonon.
+     * @param merkit pakattu merkkijono
+     * @return avattu merkkijono
+     */
     public String avaa(String merkit)
     {
         byte[] bytet = new byte[merkit.length()];
@@ -21,6 +26,11 @@ public class Avaaja {
         }
         return avaa(bytet);
     }
+    /**
+     * Avaa pakatun merkkijonon.
+     * @param merkit pakattu merkkijono
+     * @return avattu merkkijono
+     */
     public String avaa(byte[] merkit)
     {
         String tulos = "";
